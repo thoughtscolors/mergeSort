@@ -1,5 +1,5 @@
-const arr2 = [2, 4, 6, 8];
-const arr1 = [1, 3, 5, 7];
+const arr1 = [1, 2, 3, 4];
+const arr2 = [5, 6, 7, 8];
 
 function merge(arr1, arr2) {
   // console.log(arr1, arr2)
@@ -7,7 +7,12 @@ function merge(arr1, arr2) {
   let j = 0;
   for (var i = 0; i < arr1.length + 1; i) {
     // console.log(i, j, "this is i,j");
-    if (i === arr1.length) {
+    if (i === arr1.length && j + 1 < arr2.length) {
+      for (var k = j; k < arr2.length; k++) {
+        result.push(arr2[k])
+      }
+      i++
+    } else if (i === arr1.length && j + 1 === arr2.length) {
       result.push(arr2[j])
       i++
     } else if (j === arr2.length) {
@@ -26,16 +31,17 @@ function merge(arr1, arr2) {
   return result;
 }
 
-console.log(merge(arr1, arr2));
+// console.log(merge([1, 2, 3, 4], [5, 6, 7, 8]), "This is merge");
+// console.log(merge([1, 3, 5, 7], [2, 4, 6, 8]), "This is merge");
+// console.log(merge([2, 5, 7, 8], [1, 3, 9, 10]), "This is merge");
 
-
-function linearSearch (array, num) {
-for (var i = 0; i < array.length; i++) {
-  if (array[i] === num)
-  return i
+function linearSearch(array, num) {
+  for (var i = 0; i < array.length; i++) {
+    if (array[i] === num)
+      return i
+  }
 }
-}
-console.log(linearSearch([ 5, 8, 23, 55, 87 ], 55));
+// console.log(linearSearch([ 5, 8, 23, 55, 87 ], 55));
 
 
 function binarySearch(array, num) {
@@ -60,9 +66,9 @@ function binarySearch(array, num) {
   return index
 }
 
-console.log(binarySearch([2, 5, 8, 9, 13, 15, 29], 5));
-console.log(binarySearch([10, 20, 30, 40, 50, 60, 70, 80, 90], 20));
-console.log(binarySearch([10, 20, 30, 40, 50, 60, 70, 80, 90], 90));
+// console.log(binarySearch([2, 5, 8, 9, 13, 15, 29], 5));
+// console.log(binarySearch([10, 20, 30, 40, 50, 60, 70, 80, 90], 20));
+// console.log(binarySearch([10, 20, 30, 40, 50, 60, 70, 80, 90], 90));
 
 function selectionSort(array) {
   // console.log(array);
@@ -112,5 +118,5 @@ function selectionSort(array) {
   return array
 }
 
-console.log(selectionSort([5, 8, 13, 1, 9, 43, 19, 33]));
-console.log(selectionSort([ 59, 49, 48, 15, 36, 35, 42, 4, 18, 33 ]));
+// console.log(selectionSort([5, 8, 13, 1, 9, 43, 19, 33]));
+// console.log(selectionSort([ 59, 49, 48, 15, 36, 35, 42, 4, 18, 33 ]));
