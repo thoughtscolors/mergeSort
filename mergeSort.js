@@ -120,3 +120,72 @@ function selectionSort(array) {
 
 // console.log(selectionSort([5, 8, 13, 1, 9, 43, 19, 33]));
 // console.log(selectionSort([ 59, 49, 48, 15, 36, 35, 42, 4, 18, 33 ]));
+
+function mergeSort (array) {
+  let selectionSort = function (array) {
+    // console.log(array);
+    let temp;
+    let minIndex;
+    for (var i = 0; i < array.length; i++) {
+      let comparo = array[i]
+      if (i === (array.length - 1)) {
+        if (array[i] < array[i - 1])
+          minIndex = i
+        temp = array[i - 1]
+        // console.log(temp, "temp", array[i], "array[i]", array[minIndex], "array[minIndex] final");
+        array[i] = array[minIndex]
+        array[i - 1] = temp
+        // console.log(array);
+      } else
+        for (var j = i + 1; j < array.length; j++) {
+          // console.log("j =", j, "i =", i);
+          if (comparo > array[j]) {
+            minIndex = j
+            comparo = array[j]
+            // console.log(array[i], "array[i]", array[j], "[array[j]", minIndex, "min index j first if");
+            if (j === array.length - 1) {
+              temp = array[i]
+              // console.log(temp, "temp", array[i], "array[i]", array[minIndex], "array[minIndex] swap 1");
+              array[i] = array[minIndex]
+              array[minIndex] = temp
+              // console.log(array);
+            }
+          } else if (comparo < array[j]) {
+            minIndex = minIndex
+            // console.log(minIndex, "minIndex", i, "i");
+            // console.log(j === array.length - 1 && array[minIndex] < array[i]);
+            // console.log(array, "before swap 2");
+            if (j === array.length - 1 && i < minIndex) {
+              /* the index i being less than the minIndex made the difference in the middle
+              to keep them from swapping incorrectly */
+              temp = array[i]
+              // console.log(temp, "temp", array[i], "array[i]", array[minIndex], "array[minIndex] swap 2");
+              array[i] = array[minIndex]
+              array[minIndex] = temp
+              // console.log(array, "after swap 2");
+            }
+          }
+        }
+    }
+    return array
+  }
+if (array.length % 2 !== 0) {
+  let remainder = array.splice(array.length - 1)
+}
+let array1 = array.slice(0, array.length / 2)
+let array2 = array.slice(array.length / 2)
+// console.log(array1, array2);
+array1 = selectionSort(array1)
+array2 = selectionSort(array2)
+let result = merge(array1, array2)
+for (var i = result.length; i > 0; i--) {
+  if (result[i] === undefined) {
+    result.splice(i, 1)
+  }
+}
+return result
+}
+
+console.log(mergeSort([ 59, 49, 48, 15, 36, 35, 42, 4, 18, 33 ]));
+console.log(mergeSort([ 5, 8, 13, 1, 9, 43, 19, 33 ]));
+// console.log(mergeSort([ 4, 15, 18, 33, 35, 36, 42, 48, 59 ]));
